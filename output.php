@@ -23,6 +23,7 @@
     $quantity = $_POST['quantity'];
     $total = intval(substr($_POST['pizza'], -1)) * intval($quantity);
 
+
     if (empty($fname) || empty($lname) || empty($address) || empty($pizza) || empty($quantity)) {
         echo 'Devi compilare il form';
         echo '<script>
@@ -34,7 +35,20 @@
     }
 
     $file = __DIR__ . '/orders/.order.txt';
-    $fileContent = "Customer: $fname $lname" . "\r\n" . "Address: $address" . "Order: \r\n" . "Pizza: $pizza" . "\r\n" . "Quantity: $quantity" . "\r\n" . "Total amount: $total" . "\r\n";
+
+    $fileContent = "Customer: $fname $lname" . "\r\n" .
+        "Address: $address" .
+        "Order: \r\n" .
+        "Pizza: $pizza" . "\r\n" .
+        "Quantity: $quantity" . "\r\n" .
+        "Total amount: $total" . "\r\n";
 
     file_put_contents($file, $fileContent);
-    echo "Dear $fname $lname,<br> we're successfully received your order!<br> Your order: <br> Pizza: $pizza <br>Quantity: $quantity <br> Total amount: $total";
+
+    echo "Dear $fname $lname,<br> 
+          we're successfully received your order!<br> 
+          <hr>
+          Your order: <br> 
+          Pizza: $pizza <br>
+          Quantity: $quantity <br> 
+          Total amount: $total";

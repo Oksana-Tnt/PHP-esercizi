@@ -22,6 +22,10 @@
             'gusto' => 'Marinara',
             'prezzo' => 4
         ],
+        [
+            'gusto' => 'Ortolana',
+            'prezzo' => 6
+        ],
     ];
     ?>
     <form action="output.php" method="POST">
@@ -37,6 +41,7 @@
         </fieldset>
 
         <label for="pizza">Pizza</label>
+
         <?php
         echo '<select name="pizza" id="pizza">';
         foreach ($pizze as $pizza) {
@@ -45,10 +50,11 @@
         echo '</select>';
         ?>
 
-        <label for="pizze">Quantity</label>
+        <label for="quantity">Quantity</label>
         <input type="number" id="quantity" name="quantity" value="1">
 
         <button>Order</button>
+
     </form>
 </body>
 
