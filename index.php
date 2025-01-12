@@ -8,26 +8,7 @@
 </head>
 
 <body>
-    <?php
-    $pizze = [
-        [
-            'gusto' => 'Margherita',
-            'prezzo' => 5
-        ],
-        [
-            'gusto' => 'Diavola',
-            'prezzo' => 1
-        ],
-        [
-            'gusto' => 'Marinara',
-            'prezzo' => 4
-        ],
-        [
-            'gusto' => 'Ortolana',
-            'prezzo' => 6
-        ],
-    ];
-    ?>
+    
     <form action="output.php" method="POST">
         <fieldset>
             <legend>Personal information:</legend>
@@ -43,9 +24,11 @@
         <label for="pizza">Pizza</label>
 
         <?php
+        include "constants.php";
+
         echo '<select name="pizza" id="pizza">';
         foreach ($pizze as $pizza) {
-            echo '<option value="' . $pizza['gusto'] . $pizza['prezzo'] . '">' . $pizza['gusto'] . ' (' . $pizza['prezzo'] . '€)</option>';
+            echo '<option value="' . $pizza['gusto'] . '">' . $pizza['gusto'] . ' (' . $pizza['prezzo'] . '€)</option>';
         }
         echo '</select>';
         ?>

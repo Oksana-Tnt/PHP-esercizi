@@ -10,6 +10,7 @@
 <body>
 
     <?php
+    include "constants.php";
 
     if (!isset($_POST['fname']) || !isset($_POST['lname']) || !isset($_POST['address']) || !isset($_POST['pizza']) || !isset($_POST['quantity'])) {
         header('Location: index.php');
@@ -19,11 +20,19 @@
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $address = $_POST['address'];
-    $pizza = substr($_POST['pizza'], 0, -1);
+    $ordered_pizza = $_POST['pizza'];
     $quantity = $_POST['quantity'];
-    $total = intval(substr($_POST['pizza'], -1)) * intval($quantity);
+    $prezzo = null;
 
+    foreach ($pizze as $pizza) {
+    if ($pizza['gusto'] === $ordered_pizza) {
+        $prezzo = $pizza['prezzo'];
+        break; 
+    }
+    }
 
+    $total = $prezzo * $quantity;
+    
     if (empty($fname) || empty($lname) || empty($address) || empty($pizza) || empty($quantity)) {
         echo 'Devi compilare il form';
         echo '<script>
@@ -39,8 +48,8 @@
     $fileContent = "Customer: $fname $lname" . "\r\n" .
         "Address: $address" .
         "Order: \r\n" .
-        "Pizza: $pizza" . "\r\n" .
-        "Quantity: $quantity" . "\r\n" .
+        "Pizza: $ordered_pizza" . "\r\n" .
+        "Quantity: $quantity" . "\r\n";
         "Total amount: $total" . "\r\n";
 
     file_put_contents($file, $fileContent);
@@ -49,6 +58,9 @@
           we're successfully received your order!<br> 
           <hr>
           Your order: <br> 
-          Pizza: $pizza <br>
-          Quantity: $quantity <br> 
-          Total amount: $total";
+          Pizza: $ordered_pizza <br>
+          Quantity: $quantity <br>
+          Total : $total <br>";
+
+
+  
